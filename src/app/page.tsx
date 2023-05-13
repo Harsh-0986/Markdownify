@@ -1,6 +1,7 @@
 import NotesList from "@/components/NotesList";
 import { Card } from "@tremor/react";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 export type NoteData = {
   id: string;
