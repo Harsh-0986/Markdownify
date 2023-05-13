@@ -20,19 +20,19 @@ const notes: NoteData[] = [
   {
     title: "Note 1",
     id: "123",
-    content: "Note 1",
+    content: "Note 1wr",
     tags: [{ id: "12", label: "First" }],
   },
   {
     title: "Note 1",
     id: "123",
-    content: "Note 1",
+    content: "Note 1wer",
     tags: [{ id: "12", label: "First" }],
   },
   {
     title: "Note 1",
     id: "123",
-    content: "Note 1",
+    content: "Note 1qrewt",
     tags: [{ id: "12", label: "First" }],
   },
 ];
@@ -50,7 +50,11 @@ const NotesList = () => {
       <Grid numCols={4} numColsMd={3} numColsSm={2} className="gap-2 w-[80vw]">
         {notes.map((note) => {
           return (
-            <Link className="cursor-pointer " href={`/edit/${note.id}`}>
+            <Link
+              key={note.id + note.content}
+              className="cursor-pointer "
+              href={`/edit/${note.id}`}
+            >
               <Card className="  hover:bg-slate-200  hover:duration-100 ease-out">
                 <Title>{note.title}</Title>
                 <ReactMarkdown
