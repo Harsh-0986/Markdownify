@@ -57,10 +57,9 @@ const NotesList = () => {
             >
               <Card className="  hover:bg-slate-200  hover:duration-100 ease-out">
                 <Title>{note.title}</Title>
-                <ReactMarkdown
-                  children={note.content}
-                  remarkPlugins={[remarkGfm]}
-                />
+                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                  {note.content}
+                </ReactMarkdown>
               </Card>
             </Link>
           );
