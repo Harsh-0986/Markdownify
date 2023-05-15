@@ -1,6 +1,6 @@
 "use client";
 
-import { NoteData } from "@/app/page";
+import { Note, NoteData } from "@/app/page";
 import { Button, Card, Col, Grid, Title } from "@tremor/react";
 import React from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
@@ -10,7 +10,7 @@ import Link from "next/link";
 import { NextRouter, useRouter } from "next/router";
 import { v4 as uuidV4 } from "uuid";
 
-const notes: NoteData[] = [
+const notes: Note[] = [
   {
     title: "Note 1",
     id: "123",
@@ -41,7 +41,7 @@ const NotesList = () => {
   return (
     <main className="w-[80vw] my-4 mx-auto">
       <div className="flex justify-end items-center my-4 mx-4">
-        <Link href={`/new/${uuidV4()}`}>
+        <Link href={`/new`}>
           <Button variant="secondary" icon={PlusIcon}>
             New Note
           </Button>
