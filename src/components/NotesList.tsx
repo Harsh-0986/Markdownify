@@ -1,43 +1,26 @@
 "use client";
 
-import { Note, NoteData } from "@/app/page";
-import { Button, Card, Col, Grid, Title } from "@tremor/react";
-import React from "react";
+import { Note, RawNote } from "@/app/page";
+import { useLocalStorage } from "@/utils/useLocalStorage";
+import { PlusIcon } from "@heroicons/react/outline";
+import { Button, Card, Grid, Title } from "@tremor/react";
+import Link from "next/link";
+import { useMemo } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
-import { PlusIcon } from "@heroicons/react/outline";
-import Link from "next/link";
-import { NextRouter, useRouter } from "next/router";
-import { v4 as uuidV4 } from "uuid";
-
-const notes: Note[] = [
-  {
-    title: "Note 1",
-    id: "123",
-    content: ` Hello, *world*! \n   *hello*`,
-    tags: [{ id: "12", label: "First" }],
-  },
-  {
-    title: "Note 1",
-    id: "123",
-    content: "Note 1wr",
-    tags: [{ id: "12", label: "First" }],
-  },
-  {
-    title: "Note 1",
-    id: "123",
-    content: "Note 1wer",
-    tags: [{ id: "12", label: "First" }],
-  },
-  {
-    title: "Note 1",
-    id: "123",
-    content: "Note 1qrewt",
-    tags: [{ id: "12", label: "First" }],
-  },
-];
 
 const NotesList = () => {
+  const notes = useLocalStorage<RawNote[]>("Notes", []);
+
+  //TODO: Update tag logic
+  // const filteredNotes = useMemo(() => {
+  //   return notes.map((note) => {
+  //     return { ...note, tags: [{ id: "1", label: "12" }] };
+  //   });
+  // }, [notes]);
+
+  const filteredNotes = notes[0];
+
   return (
     <main className="w-[80vw] my-4 mx-auto">
       <div className="flex justify-end items-center my-4 mx-4">
@@ -48,14 +31,14 @@ const NotesList = () => {
         </Link>
       </div>
       <Grid numCols={4} numColsMd={3} numColsSm={2} className="gap-2 w-[80vw]">
-        {notes.map((note) => {
+        {filteredNotes.map((note) => {
           return (
             <Link
               key={note.id + note.content}
               className="cursor-pointer "
-              href={`/edit/${note.id}`}
+              href={ `/view/${note.id}` }
             >
-              <Card className="  hover:bg-slate-200  hover:duration-100 ease-out">
+              <Card className="hover:bg-slate-200  hover:duration-100 ease-out">
                 <Title>{note.title}</Title>
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>
                   {note.content}

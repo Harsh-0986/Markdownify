@@ -2,8 +2,8 @@
 import { Note, NoteData, RawNoteData } from "@/app/page";
 import { Button, Col, Grid, Text, TextInput } from "@tremor/react";
 import Link from "next/link";
-import { NextRouter } from "next/router";
 import React, { useRef } from "react";
+
 
 type EditPageProps = {
   onCreate: (notes: RawNoteData) => void;
