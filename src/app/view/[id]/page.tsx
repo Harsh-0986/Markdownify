@@ -7,7 +7,7 @@ import React from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
 
-const id = () => {
+const View = () => {
   const path = usePathname();
   const id = path.substring(6);
 
@@ -24,4 +24,4 @@ const id = () => {
   );
 };
 
-export default id;
+export default View;

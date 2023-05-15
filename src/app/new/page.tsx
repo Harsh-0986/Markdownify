@@ -6,7 +6,7 @@ import { NextRouter, useRouter } from "next/router";
 import React, { useState } from "react";
 import {v4 as uuidv4} from 'uuid'
 
-const page = () => {
+const NewPage = () => {
   const [notes, setNotes] = useLocalStorage<RawNote[]>("Notes", []);
 
   function onCreateNote( { tagIds, ...data }: RawNoteData) {
@@ -22,4 +22,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default NewPage;
