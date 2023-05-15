@@ -20,6 +20,8 @@ const NotesList = () => {
   //   });
   // }, [notes]);
 
+  console.log(notes)
+
   const filteredNotes = notes[0];
 
   return (
