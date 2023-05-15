@@ -17,7 +17,7 @@ const id = () => {
   return (
     <div className="w-[80%] mx-auto my-4">
       <Title>{currentNote[0].title}</Title>
-      <ReactMarkdown className="my-6" remarkPlugins={[remarkGfm]}>
+      <ReactMarkdown className="my-6 prose" remarkPlugins={[remarkGfm]}>
         {currentNote[0].content}
       </ReactMarkdown>
     </div>

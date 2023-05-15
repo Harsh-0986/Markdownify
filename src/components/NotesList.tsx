@@ -5,12 +5,13 @@ import { useLocalStorage } from "@/utils/useLocalStorage";
 import { PlusIcon } from "@heroicons/react/outline";
 import { Button, Card, Grid, Title } from "@tremor/react";
 import Link from "next/link";
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
 
 const NotesList = () => {
   const notes = useLocalStorage<RawNote[]>("Notes", []);
+  const [isLoading, setIsLoading] = useState(false);
 
   //TODO: Update tag logic
   // const filteredNotes = useMemo(() => {
@@ -25,7 +26,12 @@ const NotesList = () => {
     <main className="w-[80vw] my-4 mx-auto">
       <div className="flex justify-end items-center my-4 mx-4">
         <Link href={`/new`}>
-          <Button variant="secondary" icon={PlusIcon}>
+          <Button
+            variant="secondary"
+            onClick={() => setIsLoading(true)}
+            icon={PlusIcon}
+            loading={isLoading}
+          >
             New Note
           </Button>
         </Link>
@@ -36,11 +42,14 @@ const NotesList = () => {
             <Link
               key={note.id + note.content}
               className="cursor-pointer "
-              href={ `/view/${note.id}` }
+              href={`/view/${note.id}`}
             >
-              <Card className="hover:bg-slate-200  hover:duration-100 ease-out">
+              <Card className="hover:bg-slate-200  hover:duration-100 ease-out h-48 overflow-hidden">
                 <Title>{note.title}</Title>
-                <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                <ReactMarkdown
+                  className="prose my-2"
+                  remarkPlugins={[remarkGfm]}
+                >
                   {note.content}
                 </ReactMarkdown>
               </Card>
