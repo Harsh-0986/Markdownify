@@ -1,27 +1,49 @@
 "use client";
 import { RawNote } from "@/app/page";
-import { useLocalStorage } from "@/utils/useLocalStorage";
 import { Title } from "@tremor/react";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
 
 const View = () => {
   const path = usePathname();
   const id = path.substring(6);
+  const [currentNote, setCurrentNote] = useState<RawNote>({
+    id: "",
+    title: "",
+    content: "",
+    tagIds: [""],
+  });
 
-  const notes = useLocalStorage<RawNote[]>("Notes", []);
-  const currentNote = notes[0].filter((note) => note.id === id);
+  // const notes = useLocalStorage<RawNote[]>("Notes", []);
+  let notes;
 
-  return (
-    <div className="w-[80%] mx-auto my-4">
-      <Title>{currentNote[0].title}</Title>
-      <ReactMarkdown className="my-6 prose" remarkPlugins={[remarkGfm]}>
-        {currentNote[0].content}
-      </ReactMarkdown>
-    </div>
-  );
+  if (typeof window !== "undefined") {
+    notes = localStorage.getItem("Notes");
+  }
+  let parsedNotes: RawNote[];
+  if (notes) parsedNotes = JSON.parse(notes);
+
+  useEffect(() => {
+    parsedNotes!.map((note) => {
+      if (note.id === id) setCurrentNote(note);
+    });
+    // const currentNote = notes;
+
+    console.log(currentNote);
+    //eslint-disable-next-line
+  }, []);
+
+  if (notes && notes![0].length != 0)
+    return (
+      <div className="w-[80%] mx-auto my-4">
+        <Title>{currentNote.title}</Title>
+        <ReactMarkdown className="my-6 prose" remarkPlugins={[remarkGfm]}>
+          {currentNote.content}
+        </ReactMarkdown>
+      </div>
+    );
 };
 
 export default View;
