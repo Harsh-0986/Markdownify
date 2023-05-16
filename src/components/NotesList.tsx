@@ -4,24 +4,36 @@ import { Note, RawNote } from "@/app/page";
 import { PlusIcon } from "@heroicons/react/outline";
 import { Button, Card, Grid, Title } from "@tremor/react";
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
 
 const NotesList = () => {
   // const notes = useLocalStorage<RawNote[]>("Notes", []);
-  let notes
-  
-  if(typeof window !== "undefined"){
-  notes = localStorage.getItem("Notes");
-  }
-  let parsedNotes: RawNote[] = [{
-    id: '',
-    content: '',
-    tagIds: [''],
-    title: ''
-  }];
-  if (notes) parsedNotes = JSON.parse(notes);
+  let notes;
+  const [parsedNotes, setParsedNotes] = useState([
+    {
+      id: "",
+      content: "",
+      tagIds: [""],
+      title: "",
+    },
+  ])
+  // let parsedNotes: RawNote[] = [
+  //   {
+  //     id: "",
+  //     content: "",
+  //     tagIds: [""],
+  //     title: "",
+  //   },
+  // ];
+  useEffect(() => {
+    typeof window === undefined
+      ? (notes = "")
+      : (notes = localStorage!.getItem("Notes"));
+    if (notes) setParsedNotes(JSON.parse(notes));
+    console.log(parsedNotes)
+  }, []);
 
   const [isLoading, setIsLoading] = useState(false);
 
@@ -77,8 +89,7 @@ const NotesList = () => {
         </Grid>
       </main>
     );
-    else 
-    return <div>Loading...</div>
+  else return <div>Loading...</div>;
 };
 
 export default NotesList;
