@@ -28,7 +28,7 @@ const EditPage = ({ onCreate }: EditPageProps) => {
 
   return (
     <>
-      <Grid numCols={2} className="mx-4 my-4 gap-8">
+      <Grid numCols={2} className="mx-4 my-4 gap-8 flex-grow">
         <TextInput required placeholder="Title" ref={titleRef} />
         <TextInput placeholder="Tags" />
         <Col numColSpan={2}>

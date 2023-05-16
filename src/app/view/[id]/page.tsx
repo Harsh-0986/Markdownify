@@ -49,7 +49,7 @@ const View = () => {
 
   if (currentNote) {
     return (
-      <div className="w-[80%] mx-auto my-4" suppressHydrationWarning>
+      <div className="w-[80%] mx-auto my-4 flex-grow" suppressHydrationWarning>
         <Title>{currentNote.title}</Title>
         <ReactMarkdown className="my-6 prose" remarkPlugins={[remarkGfm]}>
           {currentNote.content}
