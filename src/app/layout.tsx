@@ -25,7 +25,7 @@ export default function RootLayout({
         </header>
         {children}
         <footer className="sticky bg-slate-100 py-8 px-24 top-[100vh] w-[100vw]">
-          <Grid numCols={2}>
+          <Grid numCols={1} numColsLg={2}>
             <Col>
               <Title>Markdownify</Title>
             </Col>
