@@ -48,7 +48,7 @@ const EditPage = ({ onCreate, onEdit, id, title, content }: EditPageProps) => {
 
   return (
     <div suppressHydrationWarning>
-      <Grid numCols={2} className="mx-4 my-4 gap-8 flex-grow">
+      <Grid numCols={1} className="mx-4 my-4 gap-8 flex-grow">
         <TextInput required placeholder="Title" ref={titleRef} />
         <Col numColSpan={1}>
           <div className="tremor-TextInput-root relative w-full flex items-center min-w-[10rem] focus:outline-none focus:ring-2 bg-white hover:bg-gray-50 text-gray-500 border-gray-300 focus:ring-blue-200 rounded-md border shadow-sm">
