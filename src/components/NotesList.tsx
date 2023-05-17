@@ -50,7 +50,7 @@ const NotesList = () => {
           </Button>
         </Link>
       </div>
-      <Grid numCols={3} numColsMd={1} numColsSm={1} className="gap-2 w-[80vw]">
+      <Grid numCols={1} numColsLg={3} numColsMd={2} className="gap-2 w-[80vw]">
         {parsedNotes != undefined && parsedNotes.length > 1 ? (
           parsedNotes.map((note, index) => {
             if (index != 0)
