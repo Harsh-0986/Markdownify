@@ -1,6 +1,7 @@
 "use client";
 import { RawNote } from "@/app/page";
-import { Title } from "@tremor/react";
+import { Button, Title } from "@tremor/react";
+import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
@@ -10,6 +11,7 @@ import remarkGfm from "remark-gfm";
 const View = () => {
   const path = usePathname();
   const id = path.substring(6);
+  const [isLoading, setIsLoading] = useState(false);
   const [currentNote, setCurrentNote] = useState<RawNote>({
     id: "",
     title: "",
@@ -50,6 +52,18 @@ const View = () => {
   if (currentNote) {
     return (
       <div className="w-[80%] mx-auto my-4 flex-grow" suppressHydrationWarning>
+        <Link
+          className="my-4 flex justify-end items-center"
+          href={`/edit/${id}`}
+        >
+          <Button
+            variant="secondary"
+            loading={isLoading}
+            onClick={() => setIsLoading(true)}
+          >
+            Edit Note
+          </Button>
+        </Link>
         <Title>{currentNote.title}</Title>
         <ReactMarkdown className="my-6 prose" remarkPlugins={[remarkGfm]}>
           {currentNote.content}

@@ -8,7 +8,8 @@ const NewPage = () => {
   // const [notes, setNotes] = useLocalStorage<RawNote[]>("Notes", []);
   let notes;
   // const [parsedNotes, setParsedNotes] = useState([
-    let parsedNotes = [{
+  let parsedNotes = [
+    {
       id: "",
       content: "",
       tagIds: [""],
@@ -32,7 +33,7 @@ const NewPage = () => {
 
   return (
     <main>
-      <EditPage onCreate={onCreateNote} />
+      <EditPage onEdit={() => {}} onCreate={onCreateNote} />
     </main>
   );
 };

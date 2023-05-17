@@ -3,16 +3,32 @@ import { Note, NoteData, RawNoteData } from "@/app/page";
 import { Button, Col, Grid, Text, TextInput } from "@tremor/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 type EditPageProps = {
   onCreate: (notes: RawNoteData) => void;
+  onEdit: (id: string, notes: RawNoteData) => void;
+  id?: string;
+  title?: string;
+  content?: string;
 };
 
-const EditPage = ({ onCreate }: EditPageProps) => {
+const EditPage = ({ onCreate, onEdit, id, title, content }: EditPageProps) => {
   const router = useRouter();
   let titleRef = useRef<HTMLInputElement>(null);
   let contentRef = useRef<HTMLTextAreaElement>(null);
+
+  console.log(title, content);
+
+  useEffect(() => {
+    if (title && content) {
+      if (titleRef.current) titleRef.current.value = title;
+      if (contentRef.current) contentRef.current.value = content;
+    } else {
+      if (titleRef.current) titleRef.current.value = "";
+      if (contentRef.current) contentRef.current.value = "";
+    }
+  }, [title]);
 
   function handleSubmit(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     e.preventDefault();
@@ -22,12 +38,14 @@ const EditPage = ({ onCreate }: EditPageProps) => {
       tagIds: ["12"],
     };
 
-    onCreate(contentObj);
+    console.log(id);
+    if (!id) onCreate(contentObj);
+    else onEdit(id, contentObj);
     router.push("/");
   }
 
   return (
-    <>
+    <div suppressHydrationWarning>
       <Grid numCols={2} className="mx-4 my-4 gap-8 flex-grow">
         <TextInput required placeholder="Title" ref={titleRef} />
         <TextInput placeholder="Tags" />
@@ -49,7 +67,7 @@ const EditPage = ({ onCreate }: EditPageProps) => {
           <Button>Cancel</Button>
         </Link>
       </div>
-    </>
+    </div>
   );
 };
 
