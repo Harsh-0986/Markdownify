@@ -41,7 +41,8 @@ const EditPage = ({ onCreate, onEdit, id, title, content }: EditPageProps) => {
     console.log(id);
     if (!id) onCreate(contentObj);
     else onEdit(id, contentObj);
-    router.push("/");
+
+    router.back();
   }
 
   return (
