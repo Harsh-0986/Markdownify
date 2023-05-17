@@ -1,7 +1,7 @@
 "use client";
-import { Note, NoteData, RawNote, RawNoteData } from "@/app/page";
+import { RawNoteData } from "@/app/page";
 import EditPage from "@/components/EditPage";
-import React, { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { v4 as uuidv4 } from "uuid";
 
 const NewPage = () => {

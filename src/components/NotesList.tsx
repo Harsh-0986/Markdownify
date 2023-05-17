@@ -1,10 +1,10 @@
 "use client";
 
-import { Note, RawNote } from "@/app/page";
+import { RawNote } from "@/app/page";
 import { PlusIcon } from "@heroicons/react/outline";
 import { Button, Card, Grid, Text, Title } from "@tremor/react";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -32,12 +32,7 @@ const NotesList = () => {
 
   const [isLoading, setIsLoading] = useState(false);
 
-  //TODO: Update tag logic
-  // const filteredNotes = useMemo(() => {
-  //   return notes.map((note) => {
-  //     return { ...note, tags: [{ id: "1", label: "12" }] };
-  //   });
-  // }, [notes]);
+  // Update tag logic
 
   // const filteredNotes = parsedNotes;
 

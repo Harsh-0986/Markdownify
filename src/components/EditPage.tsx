@@ -1,6 +1,6 @@
 "use client";
-import { Note, NoteData, RawNoteData } from "@/app/page";
-import { Button, Col, Grid, Text, TextInput } from "@tremor/react";
+import { RawNoteData } from "@/app/page";
+import { Button, Col, Grid, TextInput } from "@tremor/react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef } from "react";
@@ -17,6 +17,7 @@ const EditPage = ({ onCreate, onEdit, id, title, content }: EditPageProps) => {
   const router = useRouter();
   let titleRef = useRef<HTMLInputElement>(null);
   let contentRef = useRef<HTMLTextAreaElement>(null);
+  let tagRef = useRef<HTMLInputElement>(null);
 
   // console.log(title, content);
 
@@ -49,8 +50,7 @@ const EditPage = ({ onCreate, onEdit, id, title, content }: EditPageProps) => {
     <div suppressHydrationWarning>
       <Grid numCols={2} className="mx-4 my-4 gap-8 flex-grow">
         <TextInput required placeholder="Title" ref={titleRef} />
-        <TextInput placeholder="Tags" />
-        <Col numColSpan={2}>
+        <Col numColSpan={1}>
           <div className="tremor-TextInput-root relative w-full flex items-center min-w-[10rem] focus:outline-none focus:ring-2 bg-white hover:bg-gray-50 text-gray-500 border-gray-300 focus:ring-blue-200 rounded-md border shadow-sm">
             <textarea
               ref={contentRef}
