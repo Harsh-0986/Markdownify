@@ -31,21 +31,21 @@ const Edit = () => {
     notes = localStorage!.getItem("Notes");
     // if (notes !== null && notes != undefined) setParsedNotes(JSON.parse(notes));
     parsedNotes = notes == null ? JSON.parse("{}") : JSON.parse(notes);
-    console.log("Note: ", parsedNotes);
+    // console.log("Note: ", parsedNotes);
     parsedNotes!.map((note) => {
       if (note.id === id) setCurrentNote(note);
     });
 
     // const currentNote = notes;
 
-    console.log(currentNote);
+    // console.log(currentNote);
     //eslint-disable-next-line
   }, []);
 
   function onEditNote(id: string, { tagIds, ...data }: RawNoteData) {
     parsedNotes = [...parsedNotes, { ...data, id, tagIds: ["12"] }];
 
-    console.log(parsedNotes);
+    // console.log(parsedNotes);
     localStorage.setItem("Notes", JSON.stringify(parsedNotes));
   }
 

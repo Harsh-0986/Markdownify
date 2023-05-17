@@ -27,7 +27,7 @@ const NotesList = () => {
     if (notes) {
       setParsedNotes(JSON.parse(notes));
     } else setParsedNotes(null);
-    console.log(parsedNotes);
+    // console.log(parsedNotes);
   }, []);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -56,7 +56,7 @@ const NotesList = () => {
         </Link>
       </div>
       <Grid numCols={4} numColsMd={3} numColsSm={2} className="gap-2 w-[80vw]">
-        {parsedNotes ? (
+        {parsedNotes != undefined && parsedNotes.length > 1 ? (
           parsedNotes.map((note, index) => {
             if (index != 0)
               return (

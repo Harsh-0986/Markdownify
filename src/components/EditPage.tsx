@@ -18,7 +18,7 @@ const EditPage = ({ onCreate, onEdit, id, title, content }: EditPageProps) => {
   let titleRef = useRef<HTMLInputElement>(null);
   let contentRef = useRef<HTMLTextAreaElement>(null);
 
-  console.log(title, content);
+  // console.log(title, content);
 
   useEffect(() => {
     if (title && content) {
@@ -38,7 +38,7 @@ const EditPage = ({ onCreate, onEdit, id, title, content }: EditPageProps) => {
       tagIds: ["12"],
     };
 
-    console.log(id);
+    // console.log(id);
     if (!id) onCreate(contentObj);
     else onEdit(id, contentObj);
 

@@ -27,7 +27,7 @@ const NewPage = () => {
   function onCreateNote({ tagIds, ...data }: RawNoteData) {
     parsedNotes = [...parsedNotes, { ...data, id: uuidv4(), tagIds: ["12"] }];
 
-    console.log(parsedNotes);
+    // console.log(parsedNotes);
     localStorage.setItem("Notes", JSON.stringify(parsedNotes));
   }
 
