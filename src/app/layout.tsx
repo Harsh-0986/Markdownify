@@ -8,6 +8,8 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
   title: "Markdownify",
   description: "A great note taking app powered by markdown.",
+  manifest: "/manifest.json",
+  "apple-touch-icon": "/icon.png",
 };
 
 export default function RootLayout({
