@@ -39,33 +39,42 @@ const NotesList = () => {
   // const filteredNotes = parsedNotes;
 
   return (
-    <main className="w-[80vw] my-4 mx-auto flex-grow">
-      <div className="flex justify-end items-center my-4 mx-4">
-        <Link href={`/new`}>
-          <Button
-            variant="secondary"
-            onClick={() => setIsLoading(true)}
-            icon={PlusIcon}
-            loading={isLoading}
+    <main
+      className={`w-[80vw] my-4 mx-auto flex-grow ${
+        isRedirecting ? "h-full" : ""
+      }`}
+    >
+      {!isRedirecting ? (
+        <>
+          <div className="flex justify-end items-center my-4 mx-4">
+            <Link href={`/new`}>
+              <Button
+                variant="secondary"
+                onClick={() => setIsLoading(true)}
+                icon={PlusIcon}
+                loading={isLoading}
+              >
+                New Note
+              </Button>
+            </Link>
+          </div>
+          <Grid
+            numCols={1}
+            numColsLg={3}
+            numColsMd={2}
+            className="gap-2 w-[80vw]"
           >
-            New Note
-          </Button>
-        </Link>
-      </div>
-      <Grid numCols={1} numColsLg={3} numColsMd={2} className="gap-2 w-[80vw]">
-        {parsedNotes != undefined && parsedNotes.length > 1 ? (
-          parsedNotes.map((note, index) => {
-            if (index != 0)
-              return (
-                <Link
-                  onClick={() => setIsRedirecting(true)}
-                  key={note.id + note.content}
-                  className="cursor-pointer "
-                  href={`/view/${note.id}`}
-                >
-                  <Card className="hover:bg-slate-200  hover:duration-100 ease-out h-48 overflow-hidden">
-                    {!isRedirecting ? (
-                      <>
+            {parsedNotes != undefined && parsedNotes.length > 1 ? (
+              parsedNotes.map((note, index) => {
+                if (index != 0)
+                  return (
+                    <Link
+                      onClick={() => setIsRedirecting(true)}
+                      key={note.id + note.content}
+                      className="cursor-pointer "
+                      href={`/view/${note.id}`}
+                    >
+                      <Card className="hover:bg-slate-200  hover:duration-100 ease-out h-48 overflow-hidden">
                         <Title>{note.title}</Title>
                         <ReactMarkdown
                           className="prose my-2"
@@ -73,27 +82,27 @@ const NotesList = () => {
                         >
                           {note.content}
                         </ReactMarkdown>
-                      </>
-                    ) : (
-                      <div className="p-0 m-0 w-full flex items-center justify-center h-full">
-                        <MoonLoader color="#ccc" />
-                      </div>
-                    )}
-                  </Card>
-                </Link>
-              );
-          })
-        ) : (
-          <div className="w-[80vw] mx-auto ">
-            <Text className="text-2xl my-4">
-              Looks like you haven't created any note yet!
-            </Text>
-            <Text className="text-2xl ">
-              Click on the "New Note" button to get started!
-            </Text>
-          </div>
-        )}
-      </Grid>
+                      </Card>
+                    </Link>
+                  );
+              })
+            ) : (
+              <div className="w-[80vw] mx-auto ">
+                <Text className="text-2xl my-4">
+                  Looks like you haven't created any note yet!
+                </Text>
+                <Text className="text-2xl ">
+                  Click on the "New Note" button to get started!
+                </Text>
+              </div>
+            )}
+          </Grid>
+        </>
+      ) : (
+        <div className="p-0 m-0 w-full flex items-center justify-center h-full">
+          <MoonLoader color="#ccc" />
+        </div>
+      )}
     </main>
   );
 };
