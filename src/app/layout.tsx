@@ -42,7 +42,7 @@ export default function RootLayout({
                 </Link>
               </Text>
               <Text>
-                Made by <Link href="htttps://harshshah.codes">Harsh Shah</Link>
+                Made by <Link href="https://harshshah.codes">Harsh Shah</Link>
               </Text>
             </Col>
           </Grid>

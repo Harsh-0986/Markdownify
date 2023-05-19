@@ -7,6 +7,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import remarkGfm from "remark-gfm";
+import { MoonLoader } from "react-spinners";
 
 const NotesList = () => {
   // const notes = useLocalStorage<RawNote[]>("Notes", []);
@@ -31,6 +32,7 @@ const NotesList = () => {
   }, []);
 
   const [isLoading, setIsLoading] = useState(false);
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   // Update tag logic
 
@@ -56,18 +58,27 @@ const NotesList = () => {
             if (index != 0)
               return (
                 <Link
+                  onClick={() => setIsRedirecting(true)}
                   key={note.id + note.content}
                   className="cursor-pointer "
                   href={`/view/${note.id}`}
                 >
                   <Card className="hover:bg-slate-200  hover:duration-100 ease-out h-48 overflow-hidden">
-                    <Title>{note.title}</Title>
-                    <ReactMarkdown
-                      className="prose my-2"
-                      remarkPlugins={[remarkGfm]}
-                    >
-                      {note.content}
-                    </ReactMarkdown>
+                    {!isRedirecting ? (
+                      <>
+                        <Title>{note.title}</Title>
+                        <ReactMarkdown
+                          className="prose my-2"
+                          remarkPlugins={[remarkGfm]}
+                        >
+                          {note.content}
+                        </ReactMarkdown>
+                      </>
+                    ) : (
+                      <div className="p-0 m-0 w-full flex items-center justify-center h-full">
+                        <MoonLoader color="#ccc" />
+                      </div>
+                    )}
                   </Card>
                 </Link>
               );
