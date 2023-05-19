@@ -9,7 +9,7 @@ pre {
   background: rgb(1, 22, 39) !important;
 }
 
-code{
-   font-family: 'Operator Mono', sans-serif;
+code {
+   font-family: 'Operator Mono', sans-serif !important;
    line-height: 1.5;
 }
