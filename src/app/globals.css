@@ -10,6 +10,6 @@ pre {
 }
 
 code {
-   font-family: 'Operator Mono', sans-serif !important;
+   font-family: 'Operator Mono', Consolas, sans-serif !important;
    line-height: 1.5;
 }
