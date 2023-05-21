@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.cdnfonts.com/css/operator-mono');
+@import url("https://fonts.cdnfonts.com/css/operator-mono");
 
 pre {
   width: 80vw;
@@ -10,6 +10,6 @@ pre {
 }
 
 code {
-   font-family: 'Operator Mono', Consolas, sans-serif !important;
-   line-height: 1.5;
+  font-family: Monaco, Barlow, Poppins, "Operator Mono", Consolas, sans-serif !important;
+  line-height: 1.5;
 }

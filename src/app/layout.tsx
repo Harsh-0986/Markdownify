@@ -2,6 +2,8 @@ import { Col, Grid, Text, Title } from "@tremor/react";
 import "./globals.css";
 import { Inter } from "next/font/google";
 import Link from "next/link";
+import "@fontsource/poppins/600.css";
+import "@fontsource/barlow/600.css";
 
 const inter = Inter({ subsets: ["latin"] });
 

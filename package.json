@@ -9,6 +9,8 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/barlow": "^4.5.9",
+    "@fontsource/poppins": "^4.5.10",
     "@heroicons/react": "^1.0.6",
     "@tremor/react": "^2.5.0",
     "@types/node": "20.1.3",
